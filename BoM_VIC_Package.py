@@ -5,7 +5,6 @@
 
 import wget, os, shutil, time, psutil, sys, fitz
 from datetime import datetime
-from txtmarker.factory import Factory
 from colorama import init
 init()
 
