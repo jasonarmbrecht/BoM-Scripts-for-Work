@@ -5,7 +5,7 @@ A soon-to-be collection of scripts to interact with BoM products. Motivation is 
 VIC_BoM_Package.py downloads, highlights and prints a package of Victorian coastal and local marine forecasts.
 It is a messy but functional script. It uses Adobe Acrobat for pdf print. If it is the first time using the script, it may fail due to trying to open the file in an  untrusted manner. If so, add the BoMTemps folder to the priveleged/trusted folders in Adobe Reader security preferences menu. Due to workplace constraints, I am unable to use GhostScript for more transparent print operation, unfortunately. But I hope to incorporate it in the future.
 
-# General Instructions: 
+# General Instructions (for my work colleagues): 
 
 1. Install python via Microsoft Store
 2. Update PIP via command prompt
