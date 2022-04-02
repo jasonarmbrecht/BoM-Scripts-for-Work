@@ -19,7 +19,11 @@ wget, PyMuPDF, colorama.
 5. Create cmd.exe shortcut. 
 6.            Target = C:\WINDOWS\system32\cmd.exe /k python VIC_BoM_Package.py
 7.            Start in = Z:\
-8. Run script.
+8. Open Adobe Reader DC.
+9. Navigate to File > Edit > Preferences > Security (Enchanced)
+10. Click 'Add Folder Path'
+11. Add 'C:\BoMTemp\' as a privilaged/trusted location, press OK and exit.
+12. Run script.
 
 
 I may create an actual distributable at some point.
