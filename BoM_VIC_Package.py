@@ -45,6 +45,7 @@ def deleteFiles ():
 def downloadTxt (bomId):
     print(datetime.now(), "\x1b[1;33;40m Requesting forecast issue time...\x1b[1;37;40m")
     wget.download('ftp://ftp2.bom.gov.au/anon/gen/fwo/' + bomId + '.txt', bomDir)
+    print("\n")
 
 # Print the time updated line
 def printUpdate (bomId):
@@ -110,7 +111,7 @@ def printFiles (bomId):
     for p in psutil.process_iter(): # Close Acrobat after printing the PDF
         if 'AcroRd' in str(p):
             p.kill()
-            print(now, "\x1b[1;32;40m Job sent to printer...\x1b[1;37;40m")
+            print(datetime.now(), "\x1b[1;32;40m Job sent to printer...\x1b[1;37;40m")
 
 
 # Main program start
@@ -127,11 +128,11 @@ print("\x1b[1;35;40m By Jason Armbrecht\x1b[1;37;40m")
 print("\n")
 checkFolder()
 deleteFiles()
+print("\n")
 downloadTxt(coastal_vic)
 downloadTxt(local_portp)
 downloadTxt(local_wport)
 downloadTxt(local_gipps)
-print("\n")
 printUpdate(coastal_vic)
 printUpdate(local_portp)
 printUpdate(local_wport)
