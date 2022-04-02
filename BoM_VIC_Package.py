@@ -1,7 +1,7 @@
-# BoM Downloader for Kordia MSCS
+# BoM Downloader for Kordia
 # Version 0.2
 # By Jason Armbrecht
-# https://github.com/jasonarmbrecht/Kordia_MSCS_BoM
+# https://github.com/jasonarmbrecht/BoM-Scripts-for-Work
 
 import wget, os, shutil, time, psutil, sys, fitz
 from datetime import datetime
@@ -44,7 +44,7 @@ def deleteFiles ():
 # Download .txt file to retrive update time
 def downloadTxt (bomId):
     print(datetime.now(), "\x1b[1;33;40m Requesting forecast issue time...\x1b[1;37;40m")
-    wget.download('ftp://ftp2.bom.gov.au/anon/gen/fwo/' + bomId + '.txt', bomDir)
+    wget.download('ftp://ftp2.bom.gov.au/anon/gen/fwo/' + bomId + '.txt', bomDir) # download from FTP server
     print("\n")
 
 # Print the time updated line
@@ -52,8 +52,13 @@ def printUpdate (bomId):
     print("\x1b[1;34;40m")
     file = open(bomDir + bomId + ".txt")
     content = file.readlines() # read the content of the file opened
-    #print(" ")
     print(content[4], content[5]) # read the 4th and 5th line from the file
+
+# get the issue time to use for highlighting
+def issueTime (bomId):
+    file = open(bomDir + bomId + ".txt")
+    content = file.readlines() 
+    return str(content[5]) # returns issue time sentence as string
 
 # Asks user to confirm if the FTP has actually been updated yet.
 def confirmUpdate ():
@@ -74,11 +79,13 @@ def downloadPdf (bomId):
 
 def highlightDoc (bomId):
     print(datetime.now(), "\x1b[1;33;40m Auto-highlighting", bomId, "...")
-    redColour = [0.8, 0.1, 0.1]
-    blueColour = [0.1, 0.9, 1]
+    redColour = [1, 0.2, 0.2] # set colors to use for highlighting
+    blueColour = [0.6, 0.6, 1]
     greenColour = [0.6, 1, 0.1]
-    purpleColour = [0.6, 0.3, 1]
+    yellowColour = [1, 1, 0]
     orangeColour = [1, 0.4, 0.1]
+    pinkColour = [1, 0.5, 1]
+    aquaColour = [0.3, 1, 1]
     def hl (hlText, hlColour):
         for page in pdf_file:
             text_to_be_highlighted = hlText
@@ -88,18 +95,20 @@ def highlightDoc (bomId):
                 highlight.set_colors(stroke = hlColour)
                 highlight.update()
     pdf_file = fitz.open(bomDir + bomId + ".pdf")
+    hl(issueTime(bomId), aquaColour) # start highlighting stuff
     hl("Strong Wind Warning", orangeColour)
     hl("Gale Warning", redColour)
     hl("Storm Force Wind Warning", redColour)
     hl("Please be aware", blueColour)
+    hl("Weather Situation", pinkColour)
     hl("West Coast: SA-VIC Border to Cape Otway", greenColour)
     hl("Central Coast: Cape Otway to Wilsons Promontory", greenColour)
     hl("Central Gippsland Coast: Wilsons Promontory to Lakes Entrance", greenColour)
     hl("East Gippsland Coast: Lakes Entrance to 60nm east of Gabo Island", greenColour)
-    hl("Coastal Waters Forecast for Victoria", purpleColour)
-    hl("Local Waters Forecast for Port Phillip", purpleColour)
-    hl("Local Waters Forecast for Western Port", purpleColour)
-    hl("Local Waters Forecast Gippsland Lakes", purpleColour)
+    hl("Coastal Waters Forecast for Victoria", yellowColour)
+    hl("Local Waters Forecast for Port Phillip", yellowColour)
+    hl("Local Waters Forecast for Western Port", yellowColour)
+    hl("Local Waters Forecast Gippsland Lakes", yellowColour)
     pdf_file.save(bomDir + bomId + "_hl.pdf", garbage=4, deflate=True, clean=True)
     print("\x1b[1;32;40m Document succesfully highlighted.", "\x1b[1;37;40m")
 
