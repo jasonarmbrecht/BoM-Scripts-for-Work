@@ -12,7 +12,7 @@ It is a messy but functional script. It uses Adobe Acrobat for pdf print. If it 
 3. Also via command prompt, install the following dependencies:
 wget, PyMuPDF, colorama, psutil.
 4. Place VIC_BoM_Package.py in your Z:drive
-5. Create cmd.exe shortcut. 
+5. Create cmd.exe shortcut and use the following properties: 
 6.            Target = C:\WINDOWS\system32\cmd.exe /k python VIC_BoM_Package.py
 7.            Start in = Z:\
 8. Open Adobe Reader DC.
