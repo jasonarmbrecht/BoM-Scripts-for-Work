@@ -10,7 +10,7 @@ It is a messy but functional script. It uses Adobe Acrobat for pdf print. If it 
 1. Install python via Microsoft Store
 2. Update PIP via command prompt
 3. Also via command prompt, install the following dependencies:
-wget, PyMuPDF, colorama.
+wget, PyMuPDF, colorama, psutil.
 4. Place VIC_BoM_Package.py in your Z:drive
 5. Create cmd.exe shortcut. 
 6.            Target = C:\WINDOWS\system32\cmd.exe /k python VIC_BoM_Package.py
