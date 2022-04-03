@@ -1,0 +1,4 @@
+colorama==0.4.4
+pymupdf==1.19.6
+psutil==5.9.0
+wget==3.2
