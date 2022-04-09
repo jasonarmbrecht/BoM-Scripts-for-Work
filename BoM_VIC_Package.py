@@ -22,7 +22,7 @@ local_portp = 'IDV10460' # Port Phillip Local Waters
 local_wport = 'IDV10461' # Westerport Local Waters
 local_gipps = 'IDV19300' # Gippsland Lakes Local Waters
 
-#Define text colours.
+# Define text colours.
 txt_grn = "\x1b[1;32;40m"
 txt_wht = "\x1b[1;37;40m"
 txt_ylo = "\x1b[1;33;40m"
@@ -54,6 +54,7 @@ def deleteFiles ():
                 print(f"{datetime.now()} {txt_grn} Directory cleaned.{txt_wht}")
         except Exception as e:
             print(f"{datetime.now()} Failed to delete {file_path}. Reason: {e}")
+            sys.exit()
 
 # Download .txt file to retrive update time
 def downloadTxt (bomId):
